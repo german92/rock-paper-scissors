@@ -1,5 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
 body {
-    background-image: url("./img/game.jpeg");
-    background-repeat: no-repeat;
-    background-size: cover;
+  height: 100vh;
+  margin: 0;
+  overflow: hidden;
+  font-family: Roboto, sans-serif;
+}
+
+img {
+  width: 600px;
+}
+
+button {
+  font-family: Roboto, sans-serif;
+  border: none;
+  border-radius: 8px;
+  background: #eee;
+  margin-top: 20px;
+}
+
+
+/* SOLUTION */
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+button {
+  padding: 30px 50px;
+  font-size: 20px;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+a {
+  color: #666;
+  text-decoration: none;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px;
+}
+
+.footer {
+  background: #eee;
+}
+
+ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 16px
 }

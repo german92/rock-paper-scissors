@@ -103,20 +103,24 @@ choices.forEach((choice) => {
 
     if (round[0] == 'player') {
       playerScore++;
-      currentPlayerScore.textContent = `Player Score = ${playerScore}`;
     }
     else if (round[0] == 'computer') {
       computerScore++;
-      currentComputerScore.textContent = `Computer Score = ${computerScore}`;
     }
-    
+
+    currentPlayerScore.textContent = `Player Score = ${playerScore}`;
+    currentComputerScore.textContent = `Computer Score = ${computerScore}`;
+    currentRoundOutput.textContent = `${round[1]}`;
+
     if (playerScore == 5) {
-      currentPlayerScore.textContent = `Player Score = ${playerScore}. YOU WIN`;
+      currentPlayerScore.textContent = ` Congratulations! YOU WIN`;
+      currentComputerScore.textContent = ''
       playerScore = 0;
       computerScore = 0;
     }
     else if (computerScore == 5) {
-      currentPlayerScore.textContent = `Computer Score = ${playerScore}. YOU LOOSE`;
+      currentPlayerScore.textContent = `Sorry! YOU LOOSE`;
+      currentComputerScore.textContent = ''
       playerScore = 0;
       computerScore = 0;
     } 
@@ -131,16 +135,19 @@ let computerScore = 0;
 
 const scoreBoard = document.querySelector('#score-board');
 
-const currentPlayerScore = document.createElement('H1');
+const currentPlayerScore = document.createElement('p');
 currentPlayerScore.classList.add('player-score');
-currentPlayerScore.textContent = "Player Score = 0";
 
-const currentComputerScore = document.createElement('H1');
+const currentComputerScore = document.createElement('p');
 currentComputerScore.classList.add('computer-score');
-currentComputerScore.textContent = 'Computer Score = 0';
+
+const currentRoundOutput = document.createElement('p');
+currentRoundOutput.classList.add('round-output');
 
 scoreBoard.appendChild(currentPlayerScore);
 scoreBoard.appendChild(currentComputerScore);
+scoreBoard.appendChild(currentRoundOutput);
+
 
 
 
