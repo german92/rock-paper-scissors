@@ -8,8 +8,22 @@ function getComputerChoice() {
 }
 
 function getPlayerChoice() {
-  let choice = prompt("Choose rock, paper or scissors");
-  return choice;
+  // let choice = prompt("Choose rock, paper or scissors");
+
+  // buttons is a node list. It looks and acts much like an array.
+  const choices = document.querySelectorAll('.choice-btn');
+  console.log(choices);
+
+  // we use the .forEach method to iterate through each button
+  choices.forEach((choice) => {
+
+    // and for each one we add a 'click' listener
+    choice.addEventListener('click', () => {
+      return choice.innerText.toLowerCase();
+      // const round = playRound(choice.innerText.toLowerCase(), getComputerChoice());
+    });
+  });
+
 }
 
 function playRound(playerSelection, computerSelection) {
@@ -65,33 +79,104 @@ function playRound(playerSelection, computerSelection) {
 function game() {
   let playerScore = 0;
   let computerScore = 0;
+  console.log('im here');
 
-  for (let i = 0; i < 5; i++) {
-    let playerChoice = getPlayerChoice();
-    let computerChoice = getComputerChoice();
 
-    console.log(playerChoice);
-    console.log(computerChoice);
 
-    playerChoice = playerChoice.toLowerCase();
 
-    if (playerChoice != 'rock' && playerChoice != 'paper' && playerChoice != 'scissors') {
-      playerChoice = prompt("PLEASE ONLY Choose rock, paper or scissors");
-    }
-
-    let scoreKeeper = playRound(playerChoice, computerChoice);
-    console.log(scoreKeeper);
-
-    if (scoreKeeper[0] == 'player') {
-      playerScore++;
-    }
-    else if (scoreKeeper[0] == 'computer') {
-      computerScore++;
-    }
-  }
-
-  console.log(`Final Score -> Computer: ${computerScore}, Player: ${playerScore}`);
-
-  return;
+  // return;
 
 }
+
+// buttons is a node list. It looks and acts much like an array.
+const choices = document.querySelectorAll('.choice-btn');
+// console.log(choices);
+
+// we use the .forEach method to iterate through each button
+choices.forEach((choice) => {
+
+  // and for each one we add a 'click' listener
+  choice.addEventListener('click', () => {
+    // return choice.innerText.toLowerCase();
+    const round = playRound(choice.innerText.toLowerCase(), getComputerChoice());
+    console.log(round);
+
+    if (round[0] == 'player') {
+      playerScore++;
+      currentPlayerScore.textContent = `Player Score = ${playerScore}`;
+    }
+    else if (round[0] == 'computer') {
+      computerScore++;
+      currentComputerScore.textContent = `Computer Score = ${computerScore}`;
+    }
+    
+    if (playerScore == 5) {
+      currentPlayerScore.textContent = `Player Score = ${playerScore}. YOU WIN`;
+      playerScore = 0;
+      computerScore = 0;
+    }
+    else if (computerScore == 5) {
+      currentPlayerScore.textContent = `Computer Score = ${playerScore}. YOU LOOSE`;
+      playerScore = 0;
+      computerScore = 0;
+    } 
+    
+  });
+});
+
+// Add Score Counter 
+
+let playerScore = 0;
+let computerScore = 0; 
+
+const scoreBoard = document.querySelector('#score-board');
+
+const currentPlayerScore = document.createElement('H1');
+currentPlayerScore.classList.add('player-score');
+currentPlayerScore.textContent = "Player Score = 0";
+
+const currentComputerScore = document.createElement('H1');
+currentComputerScore.classList.add('computer-score');
+currentComputerScore.textContent = 'Computer Score = 0';
+
+scoreBoard.appendChild(currentPlayerScore);
+scoreBoard.appendChild(currentComputerScore);
+
+
+
+//OLD GAME CODE:
+
+
+// function game() {
+//   let playerScore = 0;
+//   let computerScore = 0;
+
+//   for (let i = 0; i < 5; i++) {
+//     let playerChoice = getPlayerChoice();
+//     let computerChoice = getComputerChoice();
+
+//     console.log(playerChoice);
+//     console.log(computerChoice);
+
+//     playerChoice = playerChoice.toLowerCase();
+
+//     if (playerChoice != 'rock' && playerChoice != 'paper' && playerChoice != 'scissors') {
+//       playerChoice = prompt("PLEASE ONLY Choose rock, paper or scissors");
+//     }
+
+//     let scoreKeeper = playRound(playerChoice, computerChoice);
+//     console.log(scoreKeeper);
+
+//     if (scoreKeeper[0] == 'player') {
+//       playerScore++;
+//     }
+//     else if (scoreKeeper[0] == 'computer') {
+//       computerScore++;
+//     }
+//   }
+
+//   console.log(`Final Score -> Computer: ${computerScore}, Player: ${playerScore}`);
+
+//   return;
+
+// }
